@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home page
+{% endblock %}
+{% block body %}
+    <div class="container my-3">
+        <h3>Your Todos</h3>
+        <table class="table">
+            {% if alltodo|length==0 %}
+                <div class="alert alert-light" role="alert" style="background-color:rgb(206, 205, 205);text-emphasis-color: black;">
+                    No Todos Found. Add your First Todo
+                </div>
+                
+            {% else %}
+                <thead>
+                <tr>
+                    <th scope="col">SNo</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>  
+                    {% for todo in alltodo %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{todo.title}}</td>
+                            <td>{{todo.desc}}</td>
+                            <td>{{todo.date_created}}</td>
+                            <td><a href="/update/{{todo.SNo}}" type="button" class="btn btn-outline-dark btn-sm mx-2">Update</button>
+                                <a href="/delete/{{todo.SNo}}" type="button" class="btn btn-outline-dark btn-sm mx-1">Delete</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        </table>
+    </div>
+{% endblock %}
