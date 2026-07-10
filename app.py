@@ -44,9 +44,6 @@ def show_list():
 
 @app.route("/update/<int:SNo>", methods=["GET", "POST"])
 def update_list(SNo):
-
-    
-
     if request.method == "POST":
         title = request.form["title"]
         desc = request.form["desc"]
